@@ -1,0 +1,36 @@
+.app {
+  display: flex;
+  min-height: 100vh;
+  background: #f7f7f7;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background: white;
+}
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+  .main-content {
+    padding: 10px;
+  }
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+}
+.app {
+  display: flex;
+}
+.main-content {
+  padding: 20px;
+  background: white;
+  flex: 1;
+  min-height: 100vh;
+}

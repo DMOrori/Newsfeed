@@ -1,0 +1,63 @@
+/* === Loader Container === */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  text-align: center;
+  gap: 1rem;
+  color: #333;
+}
+
+/* === Spinner === */
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #e0e0e0;
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* === Loading Text === */
+.loading-text {
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* === Dark Mode Ready === */
+@media (prefers-color-scheme: dark) {
+  .loader-container {
+    color: #eee;
+  }
+
+  .spinner {
+    border: 6px solid #444;
+    border-top-color: #4ea7ff;
+  }
+
+  .loading-text {
+    color: #ccc;
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .spinner {
+    width: 45px;
+    height: 45px;
+    border-width: 5px;
+  }
+  .loading-text {
+    font-size: 0.9rem;
+  }
+}

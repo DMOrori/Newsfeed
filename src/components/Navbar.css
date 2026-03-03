@@ -1,0 +1,242 @@
+/* === Base Styles === */
+.navbar {
+  background: #111827;
+  color: #f3f4f6;
+  padding: 0.8rem 1.5rem;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1250px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+/* === Logo === */
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f3f4f6;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.2s ease;
+}
+
+.navbar-logo:hover {
+  color: #3b82f6;
+}
+
+/* === Category List === */
+.category-list {
+  display: flex;
+  gap: 1.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.category-list li {
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-transform: capitalize;
+  color: #d1d5db;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+}
+
+.category-list li:hover {
+  color: #ffffff;
+  border-bottom: 2px solid #3b82f6;
+}
+
+.category-list li.active {
+  color: #3b82f6;
+  font-weight: 600;
+  border-bottom: 2px solid #3b82f6;
+}
+
+/* === Search Form === */
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1.5rem;
+}
+
+.search-form input {
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  background: #1f2937;
+  color: #f9fafb;
+  width: 180px;
+  transition: all 0.2s ease;
+}
+
+.search-form input:focus {
+  background: #374151;
+  width: 220px;
+}
+
+.search-form button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.search-form button:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* === Responsive Menu === */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 25px;
+  background: #f3f4f6;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Toggle Animation */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* === Mobile Layout === */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    background: #1f2937;
+    border-top: 1px solid #374151;
+    padding: 0.8rem 0;
+  }
+
+  .nav-links.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .category-list {
+    flex-direction: column;
+    gap: 0.6rem;
+    text-align: center;
+  }
+
+  .search-form {
+    justify-content: center;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .search-form input {
+    width: 70%;
+  }
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* === THEME TOGGLE === */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #f3f4f6;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg);
+  color: #3b82f6;
+}
+
+/* === LIGHT THEME === */
+body.light-theme {
+  background: #f9fafb;
+  color: #111827;
+}
+
+body.light-theme .navbar {
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .navbar-logo {
+  color: #111827;
+}
+
+body.light-theme .category-list li {
+  color: #374151;
+}
+
+body.light-theme .category-list li.active {
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+}
+
+body.light-theme .search-form input {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+body.light-theme .search-form button {
+  background: #2563eb;
+}
+
+body.light-theme .theme-toggle {
+  color: #111827;
+}
+
+
