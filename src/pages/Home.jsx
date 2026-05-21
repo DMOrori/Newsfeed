@@ -14,6 +14,10 @@ export default function Home({ searchQuery, category: initialCategory }) {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const NEWS_API_KEY = import.meta.env.VITE_NEWS_API_KEY;
+
+  useEffect(() => {
+    setCategory(initialCategory || "technology");
+  }, [initialCategory]);
   const API_URL = "https://newsapi.org/v2/top-headlines";
 
   const categories = [
@@ -73,16 +77,16 @@ export default function Home({ searchQuery, category: initialCategory }) {
 
         // Fallback mock news if API fails
         if (liveArticles.length === 0) {
-          liveArticles = Array.from({ length: 8 }, generateNews).filter(
-            (n) => n.category.toLowerCase() === selectedCategory.toLowerCase()
-          );
+          liveArticles = Array.from({ length: 16 }, () => generateNews(selectedCategory))
+            .filter((n) => n.category.toLowerCase() === selectedCategory.toLowerCase());
         }
 
-        // Remove duplicates & shuffle
-        const seen = new Set();
-        const unique = liveArticles.filter((a) => {
-          if (seen.has(a.title)) return false;
-          seen.add(a.title);
+        // Remove duplicates by URL or title, then shuffle
+        const seenKeys = new Set();
+        const unique = liveArticles.filter((article) => {
+          const key = article.url || article.title || article.id;
+          if (seenKeys.has(key)) return false;
+          seenKeys.add(key);
           return true;
         });
 
@@ -97,7 +101,7 @@ export default function Home({ searchQuery, category: initialCategory }) {
       } catch (err) {
         console.error("❌ News fetch failed:", err);
         setError("Unable to load live news. Showing sample headlines instead.");
-        const mock = Array.from({ length: 8 }, generateNews);
+        const mock = Array.from({ length: 8 }, () => generateNews(category));
         setArticles(mock);
       } finally {
         setLoading(false);

@@ -102,10 +102,17 @@ const topics = [
 ];
 
 // ✅ Main Generator Function
-export function generateNews() {
-  const categories = Object.keys(categoryImages);
-  const category = randomItem(categories);
-  const image = randomItem(categoryImages[category]);
+export function generateNews(category = null) {
+  const normalizedCategory =
+    category && typeof category === "string"
+      ? category.toLowerCase()
+      : null;
+  const categories = normalizedCategory && categoryImages[normalizedCategory]
+    ? [normalizedCategory]
+    : Object.keys(categoryImages);
+
+  const chosenCategory = randomItem(categories);
+  const image = randomItem(categoryImages[chosenCategory]);
   const title = `${randomItem(titleStarters)} ${randomItem(topics)}`;
   const content = `${randomItem(summarySnippets)} ${randomItem(summarySnippets)} ${randomItem(summarySnippets)}`;
   const source = randomItem(sources);
@@ -114,7 +121,7 @@ export function generateNews() {
     id: Math.random().toString(36).substring(2, 9),
     title,
     content,
-    category: category.charAt(0).toUpperCase() + category.slice(1),
+    category: chosenCategory.charAt(0).toUpperCase() + chosenCategory.slice(1),
     image,
     time: randomTime(),
     source,

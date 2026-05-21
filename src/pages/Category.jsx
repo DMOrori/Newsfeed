@@ -74,7 +74,7 @@ export default function Category() {
         // ✅ Fallback if API fails or returns no articles
         if (fetchedArticles.length === 0) {
           console.warn("⚙️ Falling back to generated mock news...");
-          fetchedArticles = Array.from({ length: 10 }, generateNews).filter(
+          fetchedArticles = Array.from({ length: 10 }, () => generateNews(name)).filter(
             (item) =>
               item.category.toLowerCase() === (name || "").toLowerCase()
           );

@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Category from "./pages/Category";
@@ -37,9 +37,9 @@ export default function App() {
                 <div className="not-found">
                   <h1>404</h1>
                   <p>Page not found.</p>
-                  <a href="/" className="back-home">
+                  <Link to="/" className="back-home">
                     ← Go Back Home
-                  </a>
+                  </Link>
                 </div>
               }
             />
